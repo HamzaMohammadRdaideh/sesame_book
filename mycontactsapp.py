@@ -3,17 +3,17 @@ from flask import Flask, request, render_template, session, url_for
 myapp = Flask(__name__)
 
 
-@myapp.route('/')
+@myapp.route('/login')
 def login():
     return render_template('login.html')
 
-@myapp.route('/')
+@myapp.route('/logout')
 def logout():
     return '''
     
     '''
 
-@myapp.route('/')
+@myapp.route('/signup')
 def signup():
     return render_template('signup.html')
 
