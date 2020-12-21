@@ -2,7 +2,34 @@
 
 
 {% block content %}
+<center>
+<h1>Hello {{user | title}},here are your friends contact information!</h1>
+<br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in dictionary.contact%}
+        <tr>
+            <th scope="row">{{loop.index }}</th>
+            <td>{{row.name}}</td>
+            <td>{{row.phone_number}}</td>
+            <td><a href="">edit</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
 
-<h1>Here are your friends!</h1>
+    <tbody>
 
+
+</table>
+<br>
+<a href="{{url_for('add')}}" class="btn btn-secondary" target="_blank" type="button" role="button">Add</a>
+</center>
 {% endblock %}

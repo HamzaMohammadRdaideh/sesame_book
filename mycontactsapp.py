@@ -7,9 +7,34 @@ email= None
 myapp.secret_key = ".13456356sdfHello"
 # myapp.permanent_session_lifetime = timedelta(days=5)
 
+contacts_dictionary={
+    "contact":[ {"name" : "Elmo","phone_number":"0785121254"},
+                {"name" : "CookieMonster","phone_number":"0775292323"},
+                {"name" : "Bert","phone_number":"0779632147"},
+                {"name" : "Ernie","phone_number":"079512789"},
+                {"name" : "kermit the Frog","phone_number":"0775893214"}
+			]}
+
+
+
+
 @myapp.route('/')
 def home():
     return render_template('home.html')
+
+@myapp.route('/edit')
+def edit():
+    return render_template('edit.html')
+
+@myapp.route('/add', methods=["POST","GET"])
+def add():
+    if request.method == "GET":
+        return render_template('add.html')
+    else:
+        contactname = request.form['contactname']
+        contactnumber = request.form['contactnumber']
+        contacts_dictionary['contact'].append({'name':contactname,'phone_number':contactnumber})
+        return redirect(url_for('contact_book'))
 
 @myapp.route('/profile')
 def profile():
@@ -22,7 +47,7 @@ def profile():
 @myapp.route('/contacts')
 def contact_book():
     # if "user" in session:
-    return render_template('contacts.html')
+    return render_template('contacts.html',user=user, dictionary=contacts_dictionary)
 
     # else:
     #     return redirect(url_for("login"))
