@@ -3,15 +3,24 @@
 
 
 {% block content %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }} </p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
 <h1>LogIn</h1>
 
 <div class="container mt-4">
 
-    <form method="POST" action="#" class="form-group">
+    <form method="POST" action="/login" class="form-group">
 
 
         <p> User name </p>
-        <p> <input type="text" name="nm" required>
+        <p> <input type="text" name="username" required>
             <hr>
         <p> Email </p>
         <p> <input type="email" name="email" required>
