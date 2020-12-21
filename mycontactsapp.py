@@ -2,7 +2,8 @@ from flask import Flask, request, render_template, session, url_for, session, re
 from datetime import timedelta 
 
 myapp = Flask(__name__)
-
+user = None
+email= None
 myapp.secret_key = ".13456356sdfHello"
 # myapp.permanent_session_lifetime = timedelta(days=5)
 
@@ -12,19 +13,19 @@ def home():
 
 @myapp.route('/profile')
 def profile():
-    if "user" in session:
-        return render_template('profile.html')
+    # if "user" in session:            
+    return render_template('profile.html',user = user,email = email)
 
-    else:
-        return redirect(url_for("login"))
+    # else:
+    #     return redirect(url_for("login"))
 
 @myapp.route('/contacts')
 def contact_book():
-    if "user" in session:
-        return render_template('contacts.html')
+    # if "user" in session:
+    return render_template('contacts.html')
 
-    else:
-        return redirect(url_for("login"))
+    # else:
+    #     return redirect(url_for("login"))
         
 
 @myapp.route('/about')
@@ -39,8 +40,12 @@ def login():
 
     if request.method == "POST":
         # session.permanent = True
+        global user
+        global email
         user = request.form["username"]
+        email = request.form["email"]
         session["user"] = user
+        session["email"] = email
         flash("You were successfully logged in.", "info")
         return redirect(url_for("profile"))
 

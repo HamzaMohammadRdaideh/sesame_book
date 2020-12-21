@@ -10,7 +10,14 @@
 {% endfor %}
 {% endif %}
 {% endwith %}
+<div>
+    <center>
+<h1>Welcome to your profile , {{user | title}} !</h1>
+<h2>E-mail : {{email}}</h2>
+<p>Do you want to see your contacts? click the link below</p>
+<a href="{{url_for('contact_book')}}" >contacts</a>
+</center>
+</div>
 
-<h1>Welcome to your profile!</h1>
 
 {% endblock %}
