@@ -1,11 +1,16 @@
 {% extends 'home.html' %}
-
+{% block title %}Delete{% endblock %}
 
 {% block content %}
+
+
 <center>
     <div class="alert alert-dark" role="alert">
-       <h3> Hello {{user | title}},here are your friends contact information!</h3>
+        <h3> Hello {{user | title}},here are your friends contact information!</h3>
     </div>
+
+    <form method="POST" class="form-group" action="/delete">
+
     <br>
     <table class="table table-bordered">
         <thead>
@@ -13,7 +18,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Phone number</th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -22,24 +27,20 @@
                 <th scope="row">{{loop.index }}</th>
                 <td>{{row.name}}</td>
                 <td>{{row.phone_number}}</td>
-               
+
             </tr>
             {% endfor %}
         </tbody>
 
         <tbody>
-
-
     </table>
     <br>
-    <a href="{{url_for('add')}}" class="btn btn-secondary" target="_blank" type="button"
-        role="button">Add-Contact</a>
-        
-        <a href="{{url_for('edit')}}" class="btn btn-secondary" target="_blank" type="button"
-        role="button">Edit-Contact</a>
-        
-        <a href="{{url_for('delete')}}" class="btn btn-secondary" target="_blank" type="button"
-        role="button">Delete-Contact</a>
 
+    <input type="number" id="quote" name="contactnumber" placeholder="Enter index to delete " required=""style="width:13%"> 
+    <br> <br>
+    <button type="submit" class="btn btn-secondary">Delete</button>
+
+ </form>
 </center>
+
 {% endblock %}

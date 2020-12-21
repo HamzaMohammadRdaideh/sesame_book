@@ -12,12 +12,16 @@
 {% endwith %}
 <div>
     <center>
-<h1>Welcome to your profile , {{user | title}} !</h1>
-<h2>E-mail : {{email}}</h2>
+        <div class="alert alert-dark" role="alert">
+            <h3>Welcome to your profile , {{user | title}} !</h3>
+            <h4>E-mail : {{email}}</h4>
+        </div>
+        <br>
 <p>Do you want to see your contacts? click the button below</p>
 <a href="{{url_for('contact_book')}}" class="btn btn-secondary" target="_blank" type="button" role="button">contact book</a> 
 </center>
 </div>
+
 
 
 {% endblock %}
