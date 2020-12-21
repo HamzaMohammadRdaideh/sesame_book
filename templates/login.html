@@ -12,30 +12,36 @@
 {% endif %}
 {% endwith %}
 
+<center>
+    
+    <div class="alert alert-dark" role="alert">
+        
+    <h2>Login</h2>
+    <br>
+        <h5> You have to log in to see your profile and contact book </h5>
+    </div>
+    <div class="container mt-4">
 
-<h2>LogIn</h2>
-<h3> You have to log in to see your profile and contact book </h3>
-
-<div class="container mt-4">
-
-    <form method="POST" action="/login" class="form-group">
-
-
-        <p> User name </p>
-        <p> <input type="text" name="username" required>
-            <hr>
-        <p> Email </p>
-        <p> <input type="email" name="email" required>
-            <hr>
-        <p> Password </p>
-        <p> <input type="password" name="password" required>
-
-        <p> <input class="btn btn-primary" type="submit" value="Submit">
-            <input class="btn btn-primary" type="reset" value="Clear">
-
-    </form>
+        <form method="POST" action="/login" class="form-group">
 
 
-</div>
+            <p> User name </p>
+            <p> <input type="text" name="username" required>
+                <hr>
+            <p> Email </p>
+            <p> <input type="email" name="email" required>
+                <hr>
+            <p> Password </p>
+            <p> <input type="password" name="password" required>
+
+            <p> <input class="btn btn-secondary" type="submit" value="Submit">
+                <input class="btn btn-secondary" type="reset" value="Clear">
+
+        </form>
+
+
+    </div>
+
+</center>
 
 {% endblock %}

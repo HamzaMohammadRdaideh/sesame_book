@@ -5,7 +5,7 @@ myapp = Flask(__name__)
 user = None
 email= None
 myapp.secret_key = ".13456356sdfHello"
-myapp.permanent_session_lifetime = timedelta(days=5)
+# myapp.permanent_session_lifetime = timedelta(days=5)
 
 contacts_dictionary={
     "contact":[ {"name" : "Elmo","phone_number":"0785121254"},
@@ -24,10 +24,18 @@ def home():
 
 
 
-
-@myapp.route('/edit')
+@myapp.route('/edit', methods=["POST","GET"])
 def edit():
-    return render_template('edit.html')
+    if request.method == 'GET':
+        return render_template("edit.html", dictionary=contacts_dictionary)
+    else:
+
+        contactname = request.form['contactname']
+        contactnumber = int(request.form['contactnumber'])
+        index = int(request.form['index'])
+
+        contacts_dictionary['contact'][index -1].update({'name':contactname,'phone_number':contactnumber})
+        return redirect(url_for("contact_book"))
 
 
 
@@ -89,7 +97,7 @@ def login():
         return render_template("login.html")
 
     if request.method == "POST":
-        session.permanent = True
+        # session.permanent = True
         global user
         global email
         user = request.form["username"]

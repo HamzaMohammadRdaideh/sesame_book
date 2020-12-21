@@ -1,0 +1,47 @@
+{% extends 'home.html' %}
+{% block title %}Edit a Contact{% endblock %}
+
+{% block content %}
+
+
+<center>
+    
+    <form method="POST" class="form-group" action="/edit">
+
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone number</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in dictionary.contact%}
+            <tr>
+                <th scope="row">{{loop.index }}</th>
+                <td>{{row.name}}</td>
+                <td>{{row.phone_number}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+        <tbody>
+    </table>
+    <br>
+
+    <input type="number" id="quote" name="index" placeholder="Enter index " required=""style="width:13%"> 
+    <br> <br>
+    <input type="text" id="quote" name="contactname" placeholder="Enter new name " required=""style="width:13%"> 
+    <br> <br>
+    <input type="number" id="quote" name="contactnumber" placeholder="Enter new number " required=""style="width:13%"> 
+    <br> <br>
+    <button type="submit" class="btn btn-secondary">Edit</button>
+
+ </form>
+</center>
+
+{% endblock %}
