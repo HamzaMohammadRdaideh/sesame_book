@@ -1,11 +1,13 @@
 from flask import Flask, request, render_template, session, url_for, session, redirect, flash 
 from datetime import timedelta 
+import datetime
 
 myapp = Flask(__name__)
 user = None
 email= None
+today = datetime.date.today()
 myapp.secret_key = ".13456356sdfHello"
-# myapp.permanent_session_lifetime = timedelta(days=5)
+myapp.permanent_session_lifetime = timedelta(days=1)
 
 contacts_dictionary={
     "contact":[ {"name" : "Elmo","phone_number":"0785121254"},
@@ -21,6 +23,15 @@ contacts_dictionary={
 @myapp.route('/')
 def home():
     return render_template('home.html')
+
+
+@myapp.route('/view/<int:index>')
+def view(index):
+    global time
+    view_contact = contacts_dictionary['contact'][index -1]
+    return render_template('view.html', contact = view_contact,  today = today )
+
+    
 
 
 
@@ -97,7 +108,7 @@ def login():
         return render_template("login.html")
 
     if request.method == "POST":
-        # session.permanent = True
+        session.permanent = True
         global user
         global email
         user = request.form["username"]
