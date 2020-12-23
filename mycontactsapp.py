@@ -3,11 +3,13 @@ from datetime import timedelta
 import datetime
 
 myapp = Flask(__name__)
+
 user = None
-email= None
+
 today = datetime.date.today()
+
 myapp.secret_key = ".13456356sdfHello"
-myapp.permanent_session_lifetime = timedelta(days=1)
+# myapp.permanent_session_lifetime = timedelta(days=1)
 
 contacts_dictionary={
     "contact":[ {"name" : "Elmo","phone_number":"0785121254"},
@@ -31,6 +33,11 @@ def view(index):
     return render_template('view.html', contact = view_contact,  today = today )
 
     
+
+@myapp.route('/delete/<int:index>')
+def delete(index):
+    contacts_dictionary['contact'].pop(index - 1)
+    return redirect(url_for("contact_book"))
 
 
 
@@ -61,24 +68,10 @@ def add():
         return redirect(url_for('contact_book'))
 
 
-
-@myapp.route('/delete', methods=["GET", "POST"])
-def delete():
-    if request.method == 'GET':
-        return render_template("delete.html", dictionary=contacts_dictionary)
-    else:
-        contactnumber = int(request.form['contactnumber'])
-        contacts_dictionary['contact'].pop(contactnumber - 1)
-
-        return redirect(url_for("contact_book"))
-
-
-    
-
 @myapp.route('/profile')
 def profile():
     if "user" in session:            
-        return render_template('profile.html',user = user,email = email)
+        return render_template('profile.html', user = user)
 
     else:
         return redirect(url_for("login"))
@@ -108,13 +101,12 @@ def login():
         return render_template("login.html")
 
     if request.method == "POST":
-        session.permanent = True
+        # session.permanent = True
         global user
-        global email
         user = request.form["username"]
-        email = request.form["email"]
+        password = request.form["password"]
         session["user"] = user
-        session["email"] = email
+        session["password"] = password
         flash("You were successfully logged in.", "info")
         return redirect(url_for("profile"))
 
