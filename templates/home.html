@@ -23,8 +23,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
+        <ul class="navbar-nav mb-2 mb-lg-0">
           {% if session['user'] %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/profile" style="color: bisque;">Profile</a>
@@ -36,25 +35,19 @@
           <li class="nav-item">
             <a class="nav-link" href="/about" style="color: bisque;">About us</a>
           </li>
-
-          <form class="form-inline mr-auto my-lg-0">
-            {% if session['user']%}
-
-            <li >
-              <a class="btn btn-outline-success my-2 my-sm-0" href="/logout" style="color: bisque; " >Log Out</a>
-            </li>
-            {% else %}
-            <li >
-              <a class="btn btn-outline-success my-2 my-sm-0" href="/login" style="color: bisque;"> Log In </a>
-            </li>
-            {% endif %}
-          </form>
-
-
-
-
-        </ul>
+        </ul>            
       </div>
+      <ul class="navbar-nav ml-auto">
+        {% if session['user'] %}
+        <li class="nav-item">
+          <a class="btn btn-danger " href="/logout" style="color: bisque; ">LogOut</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="btn btn-primary " href="/login" style="color: bisque;"> LogIn </a>
+        </li>
+        {% endif %}
+      </ul>
     </div>
   </nav>
 
