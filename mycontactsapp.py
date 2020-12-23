@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, session, url_for, session, redirect, flash 
 from datetime import timedelta 
 import datetime
+from functools import wraps
 
 myapp = Flask(__name__)
 
@@ -19,6 +20,32 @@ contacts_dictionary={
                 {"name" : "kermit the Frog","phone_number":"0775893214"}
 			]}
 
+
+def login_required(f):
+    @wraps(f)
+
+    
+    def check(*args, **kwargs):
+        
+
+        if 'user' in session:
+            return f(*args, **kwargs)
+            
+        else:
+
+            return redirect(url_for('login' , next=request.url))
+            
+    return check
+
+        
+
+# def login_required(f):
+#     @wraps(f)
+#     def decorated_function(*args, **kwargs):
+#         if 'user' not in session:
+#             return redirect(url_for('login', next=request.url))
+#         return f(*args, **kwargs)
+#     return decorated_function
 
 
 
@@ -68,25 +95,21 @@ def add():
         return redirect(url_for('contact_book'))
 
 
+
 @myapp.route('/profile')
+@login_required
 def profile():
-    if "user" in session:            
-        return render_template('profile.html', user = user)
 
-    else:
-        return redirect(url_for("login"))
-
+    return render_template('profile.html', user = user)
 
 
 
 @myapp.route('/contacts')
+@login_required
 def contact_book():
-    if "user" in session:
-        return render_template('contacts.html',user=user, dictionary=contacts_dictionary)
+    return render_template('contacts.html',user=user, dictionary=contacts_dictionary)
 
-    else:
-        return redirect(url_for("login"))
-
+    
 
 
 @myapp.route('/about')
@@ -105,17 +128,19 @@ def login():
         global user
         user = request.form["username"]
         password = request.form["password"]
+        next_url = request.form["next_url"]
         session["user"] = user
-        session["password"] = password
+        # session["password"] = password
         flash("You were successfully logged in.", "info")
-        return redirect(url_for("profile"))
+        return redirect(next_url)
+
 
 
 
 @myapp.route('/logout')
 def logout():
-    session.pop("user", None)
-    flash("You were successfully logged out.", "info")
+    session.clear()
+    flash("You were successfully logged out." , "info")
     return redirect(url_for("login"))
 
 
