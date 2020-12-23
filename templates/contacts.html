@@ -4,7 +4,7 @@
 {% block content %}
 <center>
     <div class="alert alert-dark" role="alert">
-       <h3> Hello {{user | title}}, here are your friends contact information!</h3>
+        <h3> Hello {{user | title}}, here are your friends contact information!</h3>
     </div>
     <br>
     <table class="table table-bordered">
@@ -14,7 +14,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Phone number</th>
                 <th>options</th>
-                
+
             </tr>
         </thead>
         <tbody>
@@ -23,10 +23,18 @@
                 <th scope="row">{{loop.index }}</th>
                 <td>{{row.name}}</td>
                 <td>{{row.phone_number}}</td>
+<<<<<<< HEAD
                 <td><a href="/view/{{loop.index}}" class="btn btn-secondary" target="_blank" type="submit"
                     role="button">View</a></td>
                 
                
+=======
+                <td><a href="/view/{{loop.index}}" class="btn btn-secondary"  type="submit"
+                        role="button"><i class="far fa-eye"></i></a>
+                <a href="{{url_for('delete')}}" class="btn btn-secondary" type="submit" role="button"><i
+                        class="fas fa-trash"></i></a></td>
+
+>>>>>>> 5061e76 (icons)
             </tr>
             {% endfor %}
         </tbody>
@@ -36,13 +44,11 @@
 
     </table>
     <br>
-    <a href="{{url_for('add')}}" class="btn btn-secondary" target="_blank" type="button"
-        role="button">Add-Contact</a>
-        
-        <a href="{{url_for('edit')}}" class="btn btn-secondary" target="_blank" type="button"
-        role="button">Edit-Contact</a>
-        
-        <a href="{{url_for('delete')}}" class="btn btn-secondary" target="_blank" type="button"
+    <a href="{{url_for('add')}}" class="btn btn-secondary" target="_blank" type="button" role="button">Add-Contact</a>
+
+    <a href="{{url_for('edit')}}" class="btn btn-secondary" target="_blank" type="button" role="button">Edit-Contact</a>
+
+    <a href="{{url_for('delete')}}" class="btn btn-secondary" target="_blank" type="button"
         role="button">Delete-Contact</a>
 
 </center>

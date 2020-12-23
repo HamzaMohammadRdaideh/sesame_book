@@ -74,6 +74,7 @@ def delete():
         return redirect(url_for("contact_book"))
 
 
+    
 
 @myapp.route('/profile')
 def profile():
