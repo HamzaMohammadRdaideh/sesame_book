@@ -27,6 +27,8 @@
                             class="far fa-eye"></i></a>
                     <a href="/delete/{{loop.index}}" class="btn btn-secondary" type="submit" role="button"><i
                             class="fas fa-trash"></i></a>
+                    <a href="/edit/{{loop.index}}" class="btn btn-secondary" type="submit" role="button"><i
+                            class="fas fa-user-edit"></i></a>
                 </td>
 
             </tr>
@@ -40,7 +42,7 @@
     <br>
     <a href="{{url_for('add')}}" class="btn btn-secondary" target="_blank" type="button" role="button">Add-Contact</a>
 
-    <a href="{{url_for('edit')}}" class="btn btn-secondary" target="_blank" type="button" role="button">Edit-Contact</a>
+
 
 
 </center>

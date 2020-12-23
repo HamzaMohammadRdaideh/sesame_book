@@ -5,43 +5,39 @@
 
 
 <center>
-    
-    <form method="POST" class="form-group" action="/edit">
 
     <br>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone number</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in dictionary.contact%}
-            <tr>
-                <th scope="row">{{loop.index }}</th>
-                <td>{{row.name}}</td>
-                <td>{{row.phone_number}}</td>
-
-            </tr>
-            {% endfor %}
-        </tbody>
-
-        <tbody>
-    </table>
     <br>
+    <br>
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">Contact Info</div>
+        <div class="card-body">
+            <h5 class="card-title">{{contact.name}}</h5>
+            <p class="card-text">Phone: {{contact.phone_number}}</p>
+            <h6>date: {{today}}</h6>
+        </div>
+    </div>
+    <form method="POST" class="form-group">
+        <!-- input for first value -->
+        <div>
+            <label for="number1">New name:</label>
+            <input type="text" id="contactname" name="newname" placeholder="New name" required="" style="width:30%">
+        </div>
+        <!-- input for second value -->
+        <div>
+            <br>
+            <label for="number2">New number:</label>
+            <input type="number" id="contactnumber" name="newnumber" placeholder="New number" required=""
+                style="width:30%">
+        </div>
+        <hr>
+        <!-- submit button -->
+        <div>
+            <br>
 
-    <input type="number" id="quote" name="index" placeholder="Enter index " required=""style="width:13%"> 
-    <br> <br>
-    <input type="text" id="quote" name="contactname" placeholder="Enter new name " required=""style="width:13%"> 
-    <br> <br>
-    <input type="number" id="quote" name="contactnumber" placeholder="Enter new number " required=""style="width:13%"> 
-    <br> <br>
-    <button type="submit" class="btn btn-secondary">Edit</button>
-
- </form>
+            <button type="submit" class="btn btn-secondary">submit</button>
+        </div>
+    </form>
 </center>
 
 {% endblock %}

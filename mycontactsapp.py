@@ -41,18 +41,18 @@ def delete(index):
 
 
 
-@myapp.route('/edit', methods=["POST","GET"])
-def edit():
+@myapp.route('/edit/<int:index>', methods=['GET','POST'])
+def edit(index):
     if request.method == 'GET':
-        return render_template("edit.html", dictionary=contacts_dictionary)
+        view_contact = contacts_dictionary['contact'][index -1]
+        return render_template('edit.html', contact = view_contact,  today = today )
     else:
+        new_contact = request.form['newname']
+        new_number = request.form['newnumber']
+        contacts_dictionary['contact'][index -1].update({'name':new_contact,'phone_number':new_number})
+        return redirect(url_for('contact_book'))
 
-        contactname = request.form['contactname']
-        contactnumber = int(request.form['contactnumber'])
-        index = int(request.form['index'])
-
-        contacts_dictionary['contact'][index -1].update({'name':contactname,'phone_number':contactnumber})
-        return redirect(url_for("contact_book"))
+    
 
 
 

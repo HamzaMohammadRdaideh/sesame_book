@@ -24,8 +24,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-         
-         {% if session['user'] %}
+
+          {% if session['user'] %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/profile" style="color: bisque;">Profile</a>
           </li>
@@ -36,26 +36,22 @@
           <li class="nav-item">
             <a class="nav-link" href="/about" style="color: bisque;">About us</a>
           </li>
-          {% for i in range(50) %}
-          <li class="nav-item">
-            <a class="nav-link"></a>
-          </li>
-          {% endfor %}
 
+          <form class="form-inline mr-auto my-lg-0">
+            {% if session['user']%}
 
-          {% if session['user']%}
-
-
-          <li class="nav-item">
-            <a class="nav-link" href="/logout" style="color: bisque;">Log Out</a>
-          </li>
+            <li >
+              <a class="btn btn-outline-success my-2 my-sm-0" href="/logout" style="color: bisque; " >Log Out</a>
+            </li>
             {% else %}
-          
-          <li class="nav-item">
+            <li >
+              <a class="btn btn-outline-success my-2 my-sm-0" href="/login" style="color: bisque;"> Log In </a>
+            </li>
+            {% endif %}
+          </form>
 
-            <a class="nav-link" href="/login" style="color: bisque;"> Log In </a>
-          </li>
-          {% endif %}
+
+
 
         </ul>
       </div>
