@@ -27,7 +27,6 @@ def home():
 
 @myapp.route('/view/<int:index>')
 def view(index):
-    global time
     view_contact = contacts_dictionary['contact'][index -1]
     return render_template('view.html', contact = view_contact,  today = today )
 
