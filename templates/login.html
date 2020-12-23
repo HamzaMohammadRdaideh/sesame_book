@@ -7,17 +7,19 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages %}
-<p>{{ message }} </p>
+<center>
+    <strong>{{ message }} </strong>
+</center>
 {% endfor %}
 {% endif %}
 {% endwith %}
 
 <center>
-    
+
     <div class="alert alert-dark" role="alert">
-        
-    <h2>Login</h2>
-    <br>
+
+        <h2>Login</h2>
+        <br>
         <h5> You have to log in to see your profile and contact book </h5>
     </div>
     <div class="container mt-4">
